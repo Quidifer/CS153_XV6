@@ -89,3 +89,9 @@ sys_uptime(void)
   release(&tickslock);
   return xticks;
 }
+
+int 
+sys_mycall(void) 
+{
+  return mycall();
+}

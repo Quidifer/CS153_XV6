@@ -532,3 +532,8 @@ procdump(void)
     cprintf("\n");
   }
 }
+
+int
+mycall(void) { //new call that we made
+  return 69;
+}
