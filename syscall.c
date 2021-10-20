@@ -105,8 +105,9 @@ extern int sys_write(void);
 extern int sys_uptime(void);
 
 extern int sys_mycall(void); //new call made by me
+extern int sys_waitpid(void);
 
-static int (*syscalls[])(void) = {
+static int (*syscalls[])() = {
 [SYS_fork]    sys_fork,
 [SYS_exit]    sys_exit,
 [SYS_wait]    sys_wait,
@@ -128,7 +129,8 @@ static int (*syscalls[])(void) = {
 [SYS_link]    sys_link,
 [SYS_mkdir]   sys_mkdir,
 [SYS_close]   sys_close,
-[SYS_mycall] sys_mycall // new call made by me :)
+[SYS_mycall]  sys_mycall, // new call made by me :)
+[SYS_waitpid] sys_waitpid //lab 1 part 3
 };
 
 void
