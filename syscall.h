@@ -22,3 +22,4 @@
 #define SYS_close  21
 
 #define SYS_mycall 22
+#define SYS_waitpid 23
