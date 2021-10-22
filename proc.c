@@ -353,16 +353,16 @@ waitpid(int pid, int * status, int options)
 
         if (status) {
           *status = p->exit_status; 
-          if (options == 1) {
-            if (!(p->exit_status)) return -1; 
-            return p->exit_status;
-          }
         }
-        else if (options  == 1) {
-          return -1;
-        }
+        // else if (options  == 1) {
+        //   return 0;
+        // }
         
         return pid;
+      }
+      else if (options == 1) { // WNOHANG makes waitpid nonblocking
+        release(&ptable.lock);
+        return 0;
       }
     }
 
