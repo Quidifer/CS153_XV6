@@ -114,3 +114,19 @@ sys_mycall(void)
 {
   return mycall();
 }
+
+int
+sys_get_priority(void)
+{
+  return get_priority();
+}
+
+int 
+sys_set_priority(void)
+{
+  int priority;
+  if(argint(0, &priority) < 0)
+    return -1;
+
+  return set_priority(priority);
+}

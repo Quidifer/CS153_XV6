@@ -112,6 +112,8 @@ found:
   memset(p->context, 0, sizeof *p->context);
   p->context->eip = (uint)forkret;
 
+  p->priority = 10; // For lab 2. Set priority to 10 by default
+
   return p;
 }
 
@@ -419,6 +421,67 @@ scheduler(void)
     release(&ptable.lock);
 
   }
+}
+
+// void scheduler(void)
+// {
+//   struct proc * p;
+//   struct cpu *c = mycpu();
+//   c->proc = 0;
+
+//   for (;;) {
+//     //enable interrupts
+//     sti();
+
+//     //loop through process table looking for the highest priority
+//     int highest_priority = -1;
+//     acquire(&ptable.lock);
+//     for(p = ptable.proc; p < &ptable.proc[NPROC]; p++) {
+//       if (p->state != RUNNABLE) continue; //only check runnable processes
+
+//       if (p->priority > highest_priority) highest_priority = p->priority;
+//     }
+
+//     //run the process with the highest priority
+//     for(p = ptable.proc; p < &ptable.proc[NPROC]; p++) {
+//       if (p->state != RUNNABLE) continue;
+//       if (p->priority != highest_priority) {
+//         continue;
+//       }
+
+//       // Switch to chosen process.  It is the process's job
+//       // to release ptable.lock and then reacquire it
+//       // before jumping back to us.
+//       c->proc = p;
+//       switchuvm(p);
+//       p->state = RUNNING;
+
+//       swtch(&(c->scheduler), p->context);
+//       switchkvm();
+
+//       // Process is done running for now.
+//       // It should have changed its p->state before coming back.
+//       c->proc = 0;
+//     }
+
+//     release(&ptable.lock);
+//   }
+// }
+
+// lets user set the priority of their process
+// returns the process' priority upon success
+// returns error if the new priority is not within the given contraints
+int set_priority(int priority) {
+  if (priority < 0 || priority > 32) return -1;
+  struct proc *p = myproc();
+  p->priority = priority;
+  return p->priority;
+}
+
+// returns the priority of the current process
+int get_priority(void) {
+  struct proc *p = myproc();
+  return p->priority;
 }
 
 // Enter scheduler.  Must hold only ptable.lock

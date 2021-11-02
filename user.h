@@ -25,6 +25,8 @@ char* sbrk(int);
 int sleep(int);
 int uptime(void);
 int mycall(void); //new function we added
+int set_priority(int); //lab 2
+int get_priority(void); //lab 2
 
 // ulib.c
 int stat(const char*, struct stat*);

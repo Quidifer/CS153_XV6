@@ -32,3 +32,5 @@ SYSCALL(uptime)
 
 SYSCALL(mycall)
 SYSCALL(waitpid)
+SYSCALL(get_priority)
+SYSCALL(set_priority)

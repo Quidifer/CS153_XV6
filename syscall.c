@@ -106,6 +106,8 @@ extern int sys_uptime(void);
 
 extern int sys_mycall(void); //new call made by me
 extern int sys_waitpid(void);
+extern int sys_get_priority(void); // for lab 2
+extern int sys_set_priority(void); // for lab 2
 
 static int (*syscalls[])() = {
 [SYS_fork]    sys_fork,
@@ -130,7 +132,9 @@ static int (*syscalls[])() = {
 [SYS_mkdir]   sys_mkdir,
 [SYS_close]   sys_close,
 [SYS_mycall]  sys_mycall, // new call made by me :)
-[SYS_waitpid] sys_waitpid //lab 1 part 3
+[SYS_waitpid] sys_waitpid, //lab 1 part 3
+[SYS_set_priority] sys_set_priority, // lab 2 
+[SYS_get_priority] sys_get_priority // lab 2
 };
 
 void
