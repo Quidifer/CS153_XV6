@@ -125,6 +125,8 @@ void            yield(void);
 int             mycall(void);
 int             set_priority(int); //lab 2
 int             get_priority(void); //lab 2
+int             time(void);
+int             turnaround(void);
 
 // swtch.S
 void            swtch(struct context**, struct context*);

@@ -21,7 +21,10 @@
 #define SYS_mkdir  20
 #define SYS_close  21
 
-#define SYS_mycall 22
-#define SYS_waitpid 23
+#define SYS_mycall       22
+#define SYS_waitpid      23
 #define SYS_set_priority 24 //lab 2
 #define SYS_get_priority 25 //lab 2
+#define SYS_time         26
+#define SYS_turnaround   27
+

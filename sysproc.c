@@ -130,3 +130,14 @@ sys_set_priority(void)
 
   return set_priority(priority);
 }
+
+int 
+sys_time(void)
+{
+  return time();
+}
+
+int sys_turnaround(void)
+{
+  return turnaround();
+}
