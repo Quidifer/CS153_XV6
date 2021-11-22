@@ -90,7 +90,8 @@ trap(struct trapframe *tf)
       exit(0);
     }
     myproc()->stack_pages++;
-    cprintf("nice bro i increased to stack pages to %d \n", myproc()->stack_pages);
+    if (myproc() -> stack_pages < 10 || myproc()->stack_pages % 500 == 0)
+      cprintf("nice bro, I increased stack pages to %d. fault address was at: %x. program size: %x. \n", myproc()->stack_pages, fault_address, myproc()->sz);
     break;
 
   //PAGEBREAK: 13

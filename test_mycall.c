@@ -22,15 +22,39 @@ main(int argc, char *argv[])
 {
   int v, n, m;
 
+  
+
   if (argc == 1) {
     v = argc;
     printf(1, "Lab 3 (part 1) - Address at first location: %p\n", &v);
     exit(0);
   }
+  else if (atoi(argv[1]) == 0) {
+    n = 1000000;
+    printf(1, "Lab 3 (part 2) - Recursing %d levels\n", n);
+    
+
+    int pid = fork();
+    if (pid) {
+      wait(0);
+      int * x = malloc(55000000 * sizeof(int));
+      // for (unsigned int i = 0; i < 55000000; ++i) {
+      //   x[i] = i;
+      // }
+      x[0] = 0;
+    }
+    
+    m = recurse(n);
+    
+    printf(1, "Lab 3 (part 2) - Yielded a value of %d\n", m);
+    exit(0);
+  }
   else if (argc == 2) {
     n = atoi(argv[1]);
     printf(1, "Lab 3 (part 2) - Recursing %d levels\n", n);
+  
     m = recurse(n);
+    
     printf(1, "Lab 3 (part 2) - Yielded a value of %d\n", m);
     exit(0);
   }
