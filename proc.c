@@ -425,6 +425,8 @@ waitpid(int pid, int * status, int options)
 //   }
 // }
 
+// priority scheduler.
+// 32 is highest. 0 is lowest. Default 10
 void scheduler(void)
 {
   struct proc * p;
