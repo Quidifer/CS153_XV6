@@ -54,6 +54,7 @@ struct proc {
   int priority;                 // for lab 2. This is the priority of the process in the priority queue
   uint start_time;
   uint turnaround_time;
+  uint stack_pages;               // for lab 3. Inits to 1 page.
 };
 
 // Process memory is laid out contiguously, low addresses first:

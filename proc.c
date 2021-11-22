@@ -201,6 +201,7 @@ fork(void)
   np->sz = curproc->sz;
   np->parent = curproc;
   *np->tf = *curproc->tf;
+  np->stack_pages = curproc->stack_pages; // addition for lab 3
 
   // Clear %eax so that fork returns 0 in the child.
   np->tf->eax = 0;
@@ -253,7 +254,7 @@ exit(int status)
 
   acquire(&ptable.lock);
 
-  cprintf("\nProcessing exiting. PID: %d. Turnaround Time: %d\n", curproc->pid, time());
+  //cprintf("\nProcessing exiting. PID: %d. Turnaround Time: %d\n", curproc->pid, time());
 
   // Parent might be sleeping in wait(0).
   wakeup1(curproc->parent);

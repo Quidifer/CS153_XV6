@@ -77,6 +77,21 @@ trap(struct trapframe *tf)
             cpuid(), tf->cs, tf->eip);
     lapiceoi();
     break;
+  case T_PGFLT: //added for lab 3 part 2
+    ;
+    uint fault_address = rcr2();
+    if (fault_address > KERNBASE - 1) { //shouldn't ever happen 
+      cprintf("trying to access above top of stack\n");
+      exit(0);
+    }
+    fault_address = PGROUNDDOWN(fault_address);
+    if (allocuvm(myproc()->pgdir, fault_address, fault_address + PGSIZE) == 0) {
+      cprintf("couldn't increase stack size");
+      exit(0);
+    }
+    myproc()->stack_pages++;
+    cprintf("nice bro i increased to stack pages to %d \n", myproc()->stack_pages);
+    break;
 
   //PAGEBREAK: 13
   default:
